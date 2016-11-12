@@ -66,7 +66,7 @@
           choices: ['space'],
           prompt: "<p class='center-content'>Press the spacebar when you hear a beep.</p>",
           data: {phase : 'exposure'},
-          timeline: [{stimulus: '/static/stimuli/sounds/exposure-short.wav', data: {soundtype: 'exposure-short'}}]
+          timeline: [{stimulus: 'static/stimuli/sounds/exposure-short.wav', data: {soundtype: 'exposure-short'}}]
         }
 
         /* test block */
@@ -76,8 +76,8 @@
           choices: ['1', '2', '3', '4', '5'],
           prompt: "<p class='center-content'>Rate this sentence from 1 to 5.</p>",
           data: {phase : 'test'},
-          timeline: [{stimulus: '/static/stimuli/sounds/bikuti-rate.wav', data: {soundtype: 'bikuti', wordtype: 'word'}},
-                     {stimulus: '/static/stimuli/sounds/budopa-rate.wav', data: {soundtype: 'budopa', wordtype: 'nonword'}}
+          timeline: [{stimulus: 'static/stimuli/sounds/bikuti-rate.wav', data: {soundtype: 'bikuti', wordtype: 'word'}},
+                     {stimulus: 'static/stimuli/sounds/budopa-rate.wav', data: {soundtype: 'budopa', wordtype: 'nonword'}}
           ],
           randomize_order: true
         }
