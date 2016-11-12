@@ -59,14 +59,15 @@
 
 
         /* exposure block */
-        var exposure = {
-          type: 'single-audio',
-          response_ends_trial: false,
-          trial_ends_after_audio: true,
-          choices: ['space'],
-          prompt: "<p class='center-content'>Press the spacebar when you hear a beep.</p>",
-          data: {phase : 'exposure'},
-          timeline: [{stimulus: 'static/stimuli/sounds/exposure-short.wav', data: {soundtype: 'exposure-short'}}]
+        var incidental_exposure = {
+          type: 'button-response',
+          response_ends_trial: true,
+          choices: ['Real', 'Made-up'],
+          prompt: "<p class='center-content'>Select whether this object is real or made-up.</p>",
+          button_html: "<a class='jspych-btn'>%choice%</a>",
+          data: {phase : 'incidental_exposure'},
+          timeline: [{stimulus: 'static/stimuli/img/aardvark.png', data: {image: 'aardvark', category: 'real'}},
+                     {stimulus: 'static/stimuli/img/blimp.png', data: {image: 'blimp', category: 'real'}    ]
         }
 
         /* test block */
@@ -131,7 +132,7 @@
             pages: [
                 'Thanks for your participation',
             ],
-            show_clickable_nav: true
+            show_clickable_nav: false
         }
 
 
@@ -195,7 +196,8 @@
 
         jsPsych.init({
             display_element: $('#jspsych-target'),
-            timeline: [instructions_overall, instructions_exposure, exposure, instructions_test, test, multi_choice_block, thanks_for_participating]
+            timeline: [instructions_overall, instructions_exposure, incidental_exposure, thanks_for_participating],
+            on_finish: function(){jsPsych.data.displayData();
             // on_finish: function() {
             //     psiturk.saveData({
             //         success: function() { psiturk.completeHIT(); }
