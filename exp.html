@@ -65,7 +65,8 @@
          nativeObject = YAML.load('params.yaml');
 
          var PARAMS = nativeObject;
-         console.log(PARAMS.incidental_exposure, PARAMS.incidental_exposure.stims)
+
+         console.log(PARAMS.incidental_exposure, PARAMS.incidental_exposure.stimuli_set)
 
 
         /* exposure block */
@@ -76,8 +77,7 @@
           prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>",
           timing_response: 1500,
           data: {phase : 'incidental_exposure'},
-          timeline: [{stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {image: 'aardvark', category: 'real'}},
-                     {stimulus: 'static/stimuli/img/blimp.png', key_answer: 49, data: {image: 'blimp', category: 'real'}} ]
+          timeline: [PARAMS.incidental_exposure.stimuli_set]
         }
 
         /* exposure block */
@@ -88,8 +88,7 @@
           prompt: "<p class='center-content'>Press 1 if True and 2 if False.</p>",
           timing_response: 1500,
           data: {phase : 'incidental_exposure'},
-          timeline: [{stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true,  key_answer: 49, data: {question: 'true', category: 'real'}},
-                     {stimulus: "<p class='center-content'>2 - 16 = -12.</p>", is_html: true, key_answer: 50, data: {image: 'blimp', category: 'real'}} ]
+          timeline: [PARAMS.math_task.stimuli_set]
         }
 
         /* test block */
