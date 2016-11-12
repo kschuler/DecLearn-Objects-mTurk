@@ -1,0 +1,353 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="jquery-color.js"></script>
+  <script src="jsPsych/jspsych.js"></script>
+  <script src="jsPsych/plugins/jspsych-text.js"></script>
+  <script src="jsPsych/plugins/jspsych-serial-reaction-time.js"></script>
+  <script src="jsPsych/plugins/jspsych-instructions.js"></script>
+  <script src="jsPsych/plugins/jspsych-single-stim.js"></script>
+  <script src="jsPsych/plugins/jspsych-call-function.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-text.js"></script>
+  <script src="sequence.js"></script>
+  <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
+  <style>
+    #score-div {
+      width: 800px;
+      height: 50px;
+      margin: auto;
+      padding-top: 50px;
+    }
+
+    #score-div {
+      font-size: 40px;
+    }
+    table { width: 40%; border-collapse: collapse; }
+    th, td { padding: 0.25em 1em; text-align: left; }
+    thead { border-bottom: 2px solid #666; }
+    td { border-bottom: 1px solid #ddd; }
+  </style>
+</head>
+
+<body>
+  <div id="score-div" style="display:none;">
+    <span style="float:left; width:350px;">
+      Last Trial:
+      <span id="last_score">0</span>
+    </span>
+    <span style="text-align:right; float:right; width:350px">
+      Set Score:
+      <span id="score">0</span>
+    </span>
+  </div>
+  <div id="jspsych-target"></div>
+</body>
+<script>
+  // parameters
+
+  var reps_per_item_per_block = 20;
+  var number_of_blocks = 8;
+  var max_response_time = 1000;
+  var timing_pre_target = 100;
+
+  var srt_grid = [
+    [1, 1, 1, 0, 1, 1, 1],
+    [1, 1, 1, 0, 1, 1, 1]
+  ];
+  var srt_keys = [
+    ['q', 'w', 'e', false, 'u', 'i', 'o'],
+    ['a', 's', 'd', false, 'j', 'k', 'l']
+  ];
+  var srt_square_size = 90;
+
+  // create triples
+
+  var items = [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [4, 0],
+    [5, 0],
+    [6, 0],
+    [0, 1],
+    [1, 1],
+    [2, 1],
+    [4, 1],
+    [5, 1],
+    [6, 1]
+  ];
+
+  items = jsPsych.randomization.shuffle(items);
+
+  var triples = [
+    [items[0], items[1], items[2]],
+    [items[3], items[4], items[5]],
+    [items[6], items[7], items[8]],
+    [items[9], items[10], items[11]]
+  ]
+
+  // create experiment structure
+
+  var exp = [];
+
+  // init score
+
+  var block_scores = [];
+  var this_block_score = 0;
+
+  // instructions
+
+  var instructions_timeline = [];
+
+  instructions_timeline.push("<p>Welcome to the experiment. Please click the button below to begin.</p>");
+  instructions_timeline.push("<p>In this experiment, you will be playing a simple game. On the screen, you will see a set of boxes like this:</p>" + jsPsych['serial-reaction-time'].stimulus(srt_grid, srt_square_size));
+  instructions_timeline.push("<p>One of the boxes will darken. Your job is to press the key that corresponds with the darkened box as quickly as possible. The corresponding keys are shown on the boxes.</p>" + jsPsych['serial-reaction-time'].stimulus(
+    srt_grid, srt_square_size, [1, 1], "#999", srt_keys));
+  instructions_timeline.push("<p>After you press a key, you will see the box turn green if you pressed the correct key.</p>" + jsPsych['serial-reaction-time'].stimulus(srt_grid, srt_square_size, [1, 1], "#0f0", srt_keys));
+  instructions_timeline.push("<p>If you pressed the wrong key, the box of the key you pressed will turn red.</p>" + jsPsych['serial-reaction-time'].stimulus(srt_grid, srt_square_size, [1, 2], "#f00", srt_keys));
+  instructions_timeline.push("<p>After you press a key and get feedback, a new box will darken.</p>" + jsPsych['serial-reaction-time'].stimulus(srt_grid, srt_square_size, [0, 4], "#999", srt_keys));
+  instructions_timeline.push(
+    "<p>After about 5 minutes, you'll get a short rest period.</p><p>There will be 8 sets of trials total, and the whole experiment will take about 40 minutes to complete.</p><p>Once you start the experiment, the letter labels on the keys will be removed, so please take note of which keys you need to press now. We encourage you to use your index, middle, and ring finder on each hand to respond.</p><p>If you need to review any of the instructions, hit the Previous button below to go back. Otherwise, click Next to begin.</p>" +
+    jsPsych['serial-reaction-time'].stimulus(srt_grid, srt_square_size, undefined, undefined, srt_keys));
+
+  var instructions = {
+    type: 'instructions',
+    pages: instructions_timeline,
+    allow_keys: false,
+    show_clickable_nav: true
+  }
+
+  exp.push(instructions);
+
+  var show_score = {
+    type: 'call-function',
+    func: function() {
+      $('#score-div').css('display', 'block');
+    },
+    timing_post_trial: 0
+  }
+
+  var hide_score = {
+    type: 'call-function',
+    func: function() {
+      $('#score-div').css('display', 'none');
+    },
+    timing_post_trial: 0
+  }
+
+  var score_description_block = {
+    type: 'single-stim',
+    choices: ['q'],
+    stimuli: [
+      '<p>One more thing! We will show you your score throughout the experiment. You can earn up to 10 points per square. The faster you press the correct key, the higher your score. If you press the wrong key or do not press the correct key fast enough you will lose 10 points. Your score for each set of trials will be calculated separately, and we will show you your total score at the end.</p><p>If your ready to start press Q.</p>'
+    ],
+    is_html: true,
+  }
+
+  var get_ready_block = {
+    type: 'single-stim',
+    stimuli: [jsPsych['serial-reaction-time'].stimulus(srt_grid, srt_square_size, undefined, undefined, srt_keys)],
+    is_html: true,
+    choices: 'none',
+    prompt: '<p style="margin:auto; text-align:center;">Put your fingers on the keys and get ready. The next set will start automatically.</p>',
+    response_ends_trial: false,
+    timing_response: 4000
+  }
+
+  exp.push(show_score);
+  exp.push(score_description_block);
+
+  // create sequence trials
+
+  function create_test_chunk() {
+    var theseq = create_4_sequence(triples, reps_per_item_per_block);
+    var seq = theseq.seq;
+
+    var timeline = [];
+
+    timeline.push(show_score);
+    timeline.push(get_ready_block);
+
+    // sequence trials
+    for (var i=0;i<seq.length; i++) {
+
+      var test_trial = {
+        type: 'serial-reaction-time',
+        target: [seq[i]],
+        grid: srt_grid,
+        choices: srt_keys,
+        grid_square_size: srt_square_size,
+        timing_pre_target: timing_pre_target,
+        timing_max_duration: max_response_time,
+        timing_post_trial: 0,
+        response_ends_trial: false,
+        fade_duration: max_response_time,
+        show_response_feedback: true,
+        data: theseq.seq_data[i],
+        on_finish: function() {
+          var d = jsPsych.data.getLastTrialData();
+          var toadd = -10;
+          if (d.correct) {
+            var toadd = Math.min(10, Math.max(0, 10 - Math.floor(d.rt / 50) + 7));
+          }
+          this_block_score += toadd;
+          $('#score').html(this_block_score.toString());
+          $('#last_score').html(toadd.toString());
+        }
+      }
+
+      timeline.push(test_trial);
+    }
+
+    var save_block_score = {
+      type: 'call-function',
+      func: function(){
+        block_scores.push(this_block_score);
+        this_block_score = 0;
+        $('#score').html(this_block_score.toString());
+        $('#last_score').html("0");
+      },
+      timing_post_trial: 0
+    }
+
+    timeline.push(save_block_score);
+
+    // scores so far
+    var scores_so_far = {
+      type: 'single-stim',
+      stimuli: [function() {
+        var stim = "<p>Set complete! Your scores so far:</p>";
+        stim += "<table><thead><tr><th>Set</th><th>Score</th></tr></thead><tbody>";
+        for (var i = 0; i < number_of_blocks; i++) {
+          stim += "<tr><td>" + (i + 1) + "</td><td>";
+          if (typeof block_scores[i] !== 'undefined') {
+            stim += block_scores[i].toString();
+          }
+          stim += "</td></tr>";
+        }
+        stim += "</tbody></table>";
+        stim += "<p>Press enter to continue</p>";
+        return stim;
+      }],
+      is_html: true,
+      choices: ['enter']
+    }
+
+    timeline.push(hide_score);
+
+    timeline.push(scores_so_far);
+
+    return {
+      chunk_type: 'linear',
+      timeline: timeline
+    };
+
+  }
+
+  for(var i=0;i<number_of_blocks;i++){
+    exp.push(create_test_chunk());
+  }
+
+  /* post-experiment stuff */
+
+  var structured_debrief_timeline = [];
+
+  var sdb_intro = {
+    type: 'single-stim',
+    choices: ['enter'],
+    stimuli: ['<p>You have completed the task. We have a couple of questions about your impressions of the experiment, and then you will be finished.</p><p>Press enter to view the first question</p>'],
+    is_html: true
+  }
+  structured_debrief_timeline.push(sdb_intro);
+
+  var sdb_1 = {
+    type: 'survey-text',
+    questions: [['<p>What do you think the purpose of the experiment was?</p>'],
+    ['<p>Did you notice any patterns in the sequence of which boxes tended to follow other boxes? (A simple yes or no answer is fine, but you can describe any patterns you think you noticed in more detail if you wish.)</p>']],
+    rows: [[10],[10]]
+  }
+  structured_debrief_timeline.push(sdb_1);
+
+  var sdb_2 = {
+    type: 'survey-text',
+    preamble: [jsPsych['serial-reaction-time'].stimulus(srt_grid, srt_square_size, undefined, undefined, srt_keys)],
+    questions: [['<p>Some keys occurred in the same order every time they were presented. If you noticed any of these orders, write them in the box below using the labels provided above.</p><p> For example: x > c would indicate that key c was likely to occur after key x.</p>']],
+    rows: [[10]],
+    columns: [[30]]
+  }
+  structured_debrief_timeline.push(sdb_2);
+
+  var structured_debrief = {
+    chunk_type: 'linear',
+    timeline: structured_debrief_timeline
+  }
+
+  exp.push(structured_debrief);
+
+  /* save data */
+
+  var save_data_block = {
+    type: 'call-function',
+    func: save_data
+  };
+
+  function save_data()
+  {
+    var data = jsPsych.data.getData();
+
+    $.ajax({
+      type: 'post',
+      cache: false,
+      url: '../common/get_subject_number.php',
+      data: {
+        "table": "srt_exp_1",
+        "subject_column": "subjid"
+      },
+      success: function(subjid) {
+
+        $.ajax({
+          type: 'post',
+          cache: false,
+          url: '../common/submit_data_mysql_v4plus.php',
+          data: {
+            "table": "srt_exp_1",
+            "json": JSON.stringify(data),
+            "opt_data":JSON.stringify({
+              "subjid": subjid
+            })
+          },
+          success: function(data2) { console.log(data2); }
+        });
+
+
+      }
+    });
+  }
+
+  exp.push(save_data_block);
+
+  var final_screen = {
+    type: 'single-stim',
+    stimuli: ['<p>The experiment is complete! Thank you for participating.</p><p>In this experiment, we are testing theories about how people learn patterns. The sequence '+
+      'of keys to press was not random: certain keys appeared in a fixed order. We are interested in whether people tend to learn these patterns all at once, or if people learn one grouping first and then others after. '+
+      'We can measure learning by looking at which kinds of keys people tend to get faster at. When people learn these patterns, they speed up on pressing keys that are part of the pattern, sometimes without even knowing '+
+      'that they have learned the pattern.</p><p>Please tell the experimenter that you are finished.</p>'],
+    is_html: true,
+    choices: ['`']
+  }
+  exp.push(final_screen);
+
+  /* run experiment */
+
+  jsPsych.init({
+    display_element: $('#jspsych-target'),
+    experiment_structure: exp,
+    on_finish: function() {
+      jsPsych.data.displayData();
+    }
+  });
+</script>
+
+</html>

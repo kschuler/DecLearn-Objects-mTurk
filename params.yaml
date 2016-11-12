@@ -1,0 +1,34 @@
+---
+incidental_exposure:
+    instructions: "Place your fingers of your right hand on the 1 and 2 key.  Press any key with your left hand to begin."
+    prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>"   # prompt present on every trial, inside an HTML <p>
+    choice:                 # numeric key code for choices as YAML list
+        - 49
+        - 50
+    timing_stim: -1                   # How long to show stim for in ms.  If -1, then stim is shown until a response is given
+    timing_response: 1500             # the maximum time allowed for a response.  If -1, then the experiment will wait indefinitely for a response
+    show_feedback_on_timeout: true
+    response_ends_trial: true         # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
+    correct_text: "Correct"
+    incorrect_text: "Wrong"
+
+    is_html: false                  # if stimulus is an HTML formatted string, this parameter needs to be set to true
+    stimuli_set:
+        - {stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {this_stim: 'aardvark'}
+        - {stimulus: 'static/stimuli/img/blimp.png', key_answer: 49, data: {this_stim: 'blimp'}
+        - {stimulus: 'static/stimuli/img/Eals01.png', key_answer: 50, data: {this_stim: 'Eals01'}
+        - {stimulus: 'static/stimuli/img/Eals02.png', key_answer: 50, data: {this_stim: 'Eals02'}
+math_task:
+    instructions: "Place your fingers of your right hand on the 1 and 2 key.  Press any key with your left hand to begin."
+    prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>"  # prompt present on every trial, inside an HTML <p>
+    choice_buttons:             # numeric key code for choices as YAML list
+        - 49
+        - 50
+    timeout_after: 1500         # timeout trial after
+    response_ends_trial: true   # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
+    is_html: true               # are the stimuli html elements? (text, not images or audio)? true or false
+    stimuli_set:
+        - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", key_answer: 49, data: {this_stim: "1 + 1 = 2"}
+        - {stimulus: "<p class='center-content'>2 - 16 = -12.</p>", key_answer: 50, data: {this_stim: "2 - 16 = -12"}
+        - {stimulus: "<p class='center-content'>1 + 3 = 4.</p>", key_answer: 50, data: {this_stim: "1 + 3 = 4"}
+        - {stimulus: "<p class='center-content'>3 + 1 = 2.</p>", key_answer: 49, data: {this_stim: "3 + 1 = 2"}

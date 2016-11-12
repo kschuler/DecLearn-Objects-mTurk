@@ -14,6 +14,10 @@
         <script src="static/js/jspsych/plugins/jspsych-instructions.js" type="text/javascript"></script>
         <script src="static/js/jspsych/plugins/jspsych-single-audio.js" type="text/javascript"></script>
         <script src="static/js/jspsych/plugins/jspsych-survey-multi-choice.js" type="text/javascript"></script>
+        <script src="static/js/jspsych/plugins/jspsych-button-response.js" type="text/javascript"></script>
+        <script src="static/js/jspsych/plugins/jspsych-categorize.js" type="text/javascript"></script>
+        <script src="static/js/jspsych/plugins/jspsych-text.js" type="text/javascript"></script>
+        <script src="static/js/yaml.js" type="text/javascript"></script>
 
         <!-- <script src="/static/js/jspsych/plugins/jspsych-call-function.js" type="text/javascript"></script> -->
 
@@ -33,9 +37,10 @@
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,400italic,700italic,700' rel='stylesheet' type='text/css'>
 
         <!-- css stylesheets for making everything pretty-->
+        <!-- <link rel=stylesheet href="static/css/style.css" type="text/css"> -->
         <link href="static/css/jspsych.css" rel="stylesheet" type="text/css"></link>
-        <link rel=stylesheet href="static/css/skeleton.css" type="text/css">
-        <link rel=stylesheet href="static/css/style.css" type="text/css">
+        <!-- <link rel=stylesheet href="static/css/skeleton.css" type="text/css"> -->
+
     </head>
 
     <!-- the body - this is where the experiment gets displayed-->
@@ -57,17 +62,31 @@
             condition: "No seperate condition"
           });
 
+         nativeObject = YAML.load('params.yaml');
+
 
         /* exposure block */
         var incidental_exposure = {
-          type: 'button-response',
+          type: 'categorize',
           response_ends_trial: true,
-          choices: ['Real', 'Made-up'],
-          prompt: "<p class='center-content'>Select whether this object is real or made-up.</p>",
-          button_html: "<a class='jspych-btn'>%choice%</a>",
+          choices: [49, 50],
+          prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>",
+          timing_response: 1500,
           data: {phase : 'incidental_exposure'},
-          timeline: [{stimulus: 'static/stimuli/img/aardvark.png', data: {image: 'aardvark', category: 'real'}},
-                     {stimulus: 'static/stimuli/img/blimp.png', data: {image: 'blimp', category: 'real'}}    ]
+          timeline: [{stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {image: 'aardvark', category: 'real'}},
+                     {stimulus: 'static/stimuli/img/blimp.png', key_answer: 49, data: {image: 'blimp', category: 'real'}} ]
+        }
+
+        /* exposure block */
+        var distractor_math = {
+          type: 'categorize',
+          response_ends_trial: true,
+          choices: [49, 50],
+          prompt: "<p class='center-content'>Press 1 if True and 2 if False.</p>",
+          timing_response: 1500,
+          data: {phase : 'incidental_exposure'},
+          timeline: [{stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true,  key_answer: 49, data: {question: 'true', category: 'real'}},
+                     {stimulus: "<p class='center-content'>2 - 16 = -12.</p>", is_html: true, key_answer: 50, data: {image: 'blimp', category: 'real'}} ]
         }
 
         /* test block */
@@ -113,11 +132,8 @@
         }
         /* instructions for exposure phase*/
         var instructions_exposure = {
-          type: 'instructions',
-          pages: [
-              'In the exposure part, you should do this.',
-          ],
-          show_clickable_nav: true
+          type: 'text',
+          text: 'Place your fingers of your right hand on the 1 and 2 key.  Press any key with your left hand to begin.'
         }
         /* instructions for test phase*/
         var instructions_test = {
@@ -128,12 +144,9 @@
           show_clickable_nav: true
         }
         var thanks_for_participating = {
-            type: 'instructions',
-            pages: [
-                'Thanks for your participation',
-            ],
-            show_clickable_nav: false
-        }
+            type: 'text',
+            text: 'Thanks for your participation.  Press any key to see results.'
+                }
 
 
         //
@@ -196,8 +209,8 @@
 
         jsPsych.init({
             display_element: $('#jspsych-target'),
-            timeline: [instructions_overall, instructions_exposure, incidental_exposure, thanks_for_participating],
-            on_finish: function(){jsPsych.data.displayData();
+            timeline: [instructions_overall, instructions_exposure, incidental_exposure, distractor_math, thanks_for_participating],
+            on_finish: function(){jsPsych.data.displayData();}
             // on_finish: function() {
             //     psiturk.saveData({
             //         success: function() { psiturk.completeHIT(); }
