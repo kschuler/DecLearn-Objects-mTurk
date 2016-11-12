@@ -126,6 +126,13 @@
           ],
           show_clickable_nav: true
         }
+        var thanks_for_participating = {
+            type: 'instructions',
+            pages: [
+                'Thanks for your participation',
+            ],
+            show_clickable_nav: true
+        }
 
 
         //
@@ -188,7 +195,7 @@
 
         jsPsych.init({
             display_element: $('#jspsych-target'),
-            timeline: [instructions_overall, instructions_exposure, exposure, instructions_test, test, multi_choice_block]
+            timeline: [instructions_overall, instructions_exposure, exposure, instructions_test, test, multi_choice_block, thanks_for_participating]
             // on_finish: function() {
             //     psiturk.saveData({
             //         success: function() { psiturk.completeHIT(); }
