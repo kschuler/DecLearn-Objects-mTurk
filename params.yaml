@@ -11,7 +11,6 @@ incidental_exposure:
     response_ends_trial: true         # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
     correct_text: "Correct"
     incorrect_text: "Wrong"
-
     is_html: false                  # if stimulus is an HTML formatted string, this parameter needs to be set to true
     stimuli_set:
         - {stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {this_stim: 'aardvark'}}
