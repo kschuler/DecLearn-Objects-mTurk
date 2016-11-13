@@ -10,8 +10,8 @@ incidental_exposure:
     show_feedback_on_timeout: true
     timeout_message:"<p class='prompt'>Please respond faster.</p>"
     response_ends_trial: true         # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
-    correct_text: "<p class='center-content'>Correct.</p>"
-    incorrect_text: "<p class='center-content'>Wrong.</p>"
+    correct_text: "<p class='prompt'>Correct.</p>"
+    incorrect_text: "<p class='prompt'>Wrong.</p>"
     is_html: false                  # if stimulus is an HTML formatted string, this parameter needs to be set to true
     stimuli_set:
         - {stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {this_stim: 'aardvark'}}
