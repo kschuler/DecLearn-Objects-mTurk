@@ -8,9 +8,10 @@ incidental_exposure:
     timing_stim: -1                   # How long to show stim for in ms.  If -1, then stim is shown until a response is given
     timing_response: 1500             # the maximum time allowed for a response.  If -1, then the experiment will wait indefinitely for a response
     show_feedback_on_timeout: true
+    timeout_message:"<p class='center-content'>Please respond faster.</p>"
     response_ends_trial: true         # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
-    correct_text: "Correct"
-    incorrect_text: "Wrong"
+    correct_text: "<p class='center-content'>Correct.</p>"
+    incorrect_text: "<p class='center-content'>Wrong.</p>"
     is_html: false                  # if stimulus is an HTML formatted string, this parameter needs to be set to true
     stimuli_set:
         - {stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {this_stim: 'aardvark'}}

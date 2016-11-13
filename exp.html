@@ -62,21 +62,18 @@
             condition: "No seperate condition"
           });
 
+          /*  load the paramter file as object and save in variable*/
          nativeObject = YAML.load('params.yaml');
-
          var PARAMS = nativeObject;
-
-         console.log(PARAMS.incidental_exposure, PARAMS.incidental_exposure.stimuli_set)
-
 
         /* exposure block */
         var incidental_exposure = {
           type: 'categorize',
+          data: {phase : 'incidental_exposure'},
           response_ends_trial: PARAMS.incidental_exposure.response_ends_trial,
           choices: PARAMS.incidental_exposure.choices,
           prompt: PARAMS.incidental_exposure.prompt,
           timing_response: PARAMS.incidental_exposure.timing_response,
-          data: {phase : 'incidental_exposure'},
           timeline: PARAMS.incidental_exposure.stimuli_set
         }
 
