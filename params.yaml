@@ -1,39 +1,215 @@
 ---
+#
+# ----------------------------- INSTRUCTIONS PARAMETERS --------------------------------------------- #
+#
+# all instructions are jspsych 'instructions' trial types, which takes a few paramters available to all
+# jspysch plugins (see http://docs.jspsych.org/plugins/overview/#parameters-available-in-all-plugins)
+# namely 'timing_post_trial' and 'data' as well as a few parameters available specifically to the
+# instructions plugin (see http://docs.jspsych.org/plugins/jspsych-instructions/#parameters)
+#
+instructions:
+    #
+    # the MAIN INSTRUCTIONS at the begining of the experiment
+    #
+    main:
+        timing_post_trial: 1000
+        data: {phase: 'instructions_main'}
+        pages:
+            - "<p class='center-content'>Welcome to the experiment. Press next to continue.</p>"
+            - "<p class='center-content'>Here is the first page of instructions abut what you'll done.</p>"
+            - "<p class='center-content'>Here is the second page.</p>"
+        key_forward: 'rightarrow'
+        key_backward: 'leftarrow'
+        allow_backward: true
+        allow_keys: true
+        show_clickable_nav: true
+    #
+    # the INCIDENTAL EXPOSURE INSTRUCTIONS (before incidental_exposure phase)
+    #
+    incidental_exposure:
+        timing_post_trial: 1000
+        data: {phase: 'instructions_incidental_exposure'}
+        pages:
+            - "<p class='center-content'>For this part you'll do a categorization task. Press spacebar to continue.</p>"
+        key_forward: 'spacebar'
+        key_backward: 'leftarrow'
+        allow_backward: false
+        allow_keys: true
+        show_clickable_nav: false
+    #
+    # the MATH TASK INSTRUCTIONS (before math_task phase)
+    #
+    math_task:
+        timing_post_trial: 1000
+        data: {phase: 'instructions_math_task'}
+        pages:
+            - "<p class='center-content'>For this part you'll do a math task. Press spacebar to continue.</p>"
+        key_forward: 'spacebar'
+        key_backward: 'leftarrow'
+        allow_backward: false
+        allow_keys: true
+        show_clickable_nav: false
+    #
+    # the MEMORY TASK INSTRUCTIONS at the begining of the experiment
+    #
+    memory_task:
+        timing_post_trial: 1000
+        data: {phase: 'instructions_memory_task'}
+        pages:
+            - "<p class='center-content'>For this part you'll do a memory task. Press spacebar to continue.</p>"
+        key_forward: 'spacebar'
+        key_backward: 'leftarrow'
+        allow_backward: false
+        allow_keys: true
+        show_clickable_nav: false
+#
+# ----------------------------- INCIDENTAL EXPOSURE PARAMETERS --------------------------------------------- #
+#
+# incidental_exposure is a jspsych 'categorize' trial type, which takes a timeline parameter that includes
+# the list of stimuli, specified below as 'timeline'. (see http://docs.jspsych.org/plugins/jspsych-categorize/)
+#
 incidental_exposure:
-    instructions: "Place your fingers of your right hand on the 1 and 2 key.  Press any key with your left hand to begin."
-    prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>"   # prompt present on every trial, inside an HTML <p>
-    choices:                 # numeric key code for choices as YAML list
+    #
+    # Here we set a few parameters available to all jspsych plugins
+    # (see http://docs.jspsych.org/plugins/overview/#parameters-available-in-all-plugins)
+    #
+    timing_post_trial: 1000
+    data: {phase: 'incidental_exposure'}
+    #
+    # Here we set a few parameters available to the 'categorize' jspsych plugin
+    # These parameters apply to ALL trials in incidental_exposure
+    # (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
+    #
+    prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>"
+    choices:
         - 49
         - 50
-    timing_stim: -1                   # How long to show stim for in ms.  If -1, then stim is shown until a response is given
-    timing_response: 1500             # the maximum time allowed for a response.  If -1, then the experiment will wait indefinitely for a response
-    show_feedback_on_timeout: true
-    timeout_message: "<p class='center-content'>Please respond faster.</p>"
-    response_ends_trial: true         # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
     correct_text: "<p class='center-content'>Correct.</p>"
     incorrect_text: "<p class='center-content'>Wrong.</p>"
-    is_html: false                  # if stimulus is an HTML formatted string, this parameter needs to be set to true
-    stimuli_set:
+    force_correct_button_press: false
+    show_stim_with_feedback: true
+    show_feedback_on_timeout: false
+    timeout_message: "<p class='center-content'>Please respond faster.</p>"
+    timing_stim: -1
+    timing_feedback_duration: 2000
+    timing_response: 1500
+    response_ends_trial: true
+    is_html: false
+    #
+    # Here we set further parameters available to the incidental_exposure timeline
+    # (randomize_order is true or false depending on whether you want the timeline (trial presentation) to be randomized)
+    # In the timeline, we set a few parameters that are avialble to the 'categorize' jsych pluginAPI
+    # that we want to change on each trial.  (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
+    #
+    randomize_order: true
+    timeline:
         - {stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {this_stim: 'aardvark'}}
         - {stimulus: 'static/stimuli/img/blimp.png', key_answer: 49, data: {this_stim: 'blimp'}}
         - {stimulus: 'static/stimuli/img/Eals01.png', key_answer: 50, data: {this_stim: 'Eals01'}}
         - {stimulus: 'static/stimuli/img/Eals02.png', key_answer: 50, data: {this_stim: 'Eals02'}}
+#
+# ----------------------------- MATH TASK PARAMETERS --------------------------------------------- #
+#
+# incidental_exposure is a jspsych 'categorize' trial type, which takes a timeline parameter that includes
+# the list of stimuli, specified below as 'timeline'. (see http://docs.jspsych.org/plugins/jspsych-categorize/)
+#
 math_task:
-    instructions: "Place your fingers of your right hand on the 1 and 2 key.  Press any key with your left hand to begin."
-    prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>"   # prompt present on every trial, inside an HTML <p>
-    choices:                 # numeric key code for choices as YAML list
+    #
+    # Here we set a few parameters available to all jspsych plugins
+    # (see http://docs.jspsych.org/plugins/overview/#parameters-available-in-all-plugins)
+    #
+    timing_post_trial: 1000
+    data: {phase: 'math_task'}
+    #
+    # Here we set a few parameters available to the 'categorize' jspsych plugin
+    # These parameters apply to ALL trials in incidental_exposure
+    # (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
+    #
+    prompt: "<p class='center-content'>Press 1 for True and 2 for False.</p>"
+    choices:
         - 49
         - 50
-    timing_stim: -1                   # How long to show stim for in ms.  If -1, then stim is shown until a response is given
-    timing_response: 1500             # the maximum time allowed for a response.  If -1, then the experiment will wait indefinitely for a response
-    show_feedback_on_timeout: true
-    timeout_message: "<p class='center-content'>Please respond faster.</p>"
-    response_ends_trial: true         # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
     correct_text: "<p class='center-content'>Correct.</p>"
-    incorrect_text: "<p class='center-content'>Wrong.</p>"   # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
-    is_html: true               # are the stimuli html elements? (text, not images or audio)? true or false
-    stimuli_set:
+    incorrect_text: "<p class='center-content'>Wrong.</p>"
+    force_correct_button_press: false
+    show_stim_with_feedback: true
+    show_feedback_on_timeout: false
+    timeout_message: "<p class='center-content'>Please respond faster.</p>"
+    timing_stim: -1
+    timing_feedback_duration: 2000
+    timing_response: 1500
+    response_ends_trial: true
+    is_html: false
+    #
+    # Here we set further parameters available to the incidental_exposure timeline
+    # (randomize_order is true or false depending on whether you want the timeline (trial presentation) to be randomized)
+    # In the timeline, we set a few parameters that are avialble to the 'categorize' jsych pluginAPI
+    # that we want to change on each trial.  (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
+    #
+    randomize_order: true
+    timeline:
         - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
-        - {stimulus: "<p class='center-content'>2 - 16 = -12.</p>", key_answer: 50, data: {this_stim: "2 - 16 = -12"}}
-        - {stimulus: "<p class='center-content'>1 + 3 = 4.</p>", key_answer: 50, data: {this_stim: "1 + 3 = 4"}}
-        - {stimulus: "<p class='center-content'>3 + 1 = 2.</p>", key_answer: 49, data: {this_stim: "3 + 1 = 2"}}
+        - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
+        - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
+        - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
+#
+# ----------------------------- MEMORY TASK PARAMETERS --------------------------------------------- #
+#
+# memory_task is a jspsych 'categorize' trial type, which takes a timeline parameter that includes
+# the list of stimuli, specified below as 'timeline'. (see http://docs.jspsych.org/plugins/jspsych-categorize/)
+#
+memory_task:
+    #
+    # Here we set a few parameters available to all jspsych plugins
+    # (see http://docs.jspsych.org/plugins/overview/#parameters-available-in-all-plugins)
+    #
+    timing_post_trial: 1000
+    data: {phase: 'math_task'}
+    #
+    # Here we set a few parameters available to the 'categorize' jspsych plugin
+    # These parameters apply to ALL trials in incidental_exposure
+    # (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
+    #
+    prompt: "<p class='center-content'>Press 1 for True and 2 for False.</p>"
+    choices:
+        - 49
+        - 50
+    correct_text: "<p class='center-content'>Correct.</p>"
+    incorrect_text: "<p class='center-content'>Wrong.</p>"
+    force_correct_button_press: false
+    show_stim_with_feedback: true
+    show_feedback_on_timeout: false
+    timeout_message: "<p class='center-content'>Please respond faster.</p>"
+    timing_stim: -1
+    timing_feedback_duration: 2000
+    timing_response: 1500
+    response_ends_trial: true
+    is_html: false
+    #
+    # Here we set further parameters available to the incidental_exposure timeline
+    # (randomize_order is true or false depending on whether you want the timeline (trial presentation) to be randomized)
+    # In the timeline, we set a few parameters that are avialble to the 'categorize' jsych pluginAPI
+    # that we want to change on each trial.  (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
+    #
+    randomize_order: true
+    timeline:
+        - {stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {this_stim: 'aardvark'}}
+        - {stimulus: 'static/stimuli/img/blimp.png', key_answer: 49, data: {this_stim: 'blimp'}}
+        - {stimulus: 'static/stimuli/img/Eals01.png', key_answer: 50, data: {this_stim: 'Eals01'}}
+        - {stimulus: 'static/stimuli/img/Eals02.png', key_answer: 50, data: {this_stim: 'Eals02'}}
+#
+# ----------------------------- DEMOGRAPHIC QUESTIONS PARAMETERS --------------------------------------------- #
+#
+# demographics_questions is a jspsych 'categorize' trial type, which takes a timeline parameter that includes
+# the list of questions you want to ask, specified below as 'timeline'. (see http://docs.jspsych.org/plugins/jspsych-categorize/)
+#
+demographic_questions:
+    questions:
+        - "How old are  you?"
+        - "Gender?"
+    options:
+        - ["18-45", "45-100"]
+        - ["Female", "Male"]
+    required:
+        - true
+        - true
