@@ -30,7 +30,16 @@ instructions:
         timing_post_trial: 1000
         data: {phase: 'instructions_incidental_exposure'}
         pages:
-            - "<p class='center-content'>For this part you'll do a categorization task. Press spacebar to continue.</p>"
+            - >
+                <h3 class='center-content'>Instructions: Part 1 of 4</h3>
+                <p class='center-content'>You will see different pictures, one at a time.
+                Some of the pictures are of real objects, and some are of made-up objects.
+                Your job is to decide if the thing in the picture is a real object or not.</p>
+                <h4 class='center-content'>If it is real, press 1. If it is not, press 2.</h4>
+                <p class='center-content'>We're measuring how long it takes you to answer, so answer as soon as possible.
+                If you aren't sure, just press the button for the first answer you think of.</p>"
+                <h4 class='center-content'>Press spacebar when you are ready to start.</h4>
+
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -43,7 +52,7 @@ instructions:
         timing_post_trial: 1000
         data: {phase: 'instructions_math_task'}
         pages:
-            - "<p class='center-content'>For this part you'll do a math task. Press spacebar to continue.</p>"
+            - "<p class='center-content'>Thanks for participating!</p><p class='center-content'>Phillip, you can press spacebar to see the data that gets stored.</p>"
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -56,7 +65,7 @@ instructions:
         timing_post_trial: 1000
         data: {phase: 'instructions_memory_task'}
         pages:
-            - "<p class='center-content'>For this part you'll do a memory task. Press spacebar to continue.</p>"
+            - "<p class='center-content'>Thanks for participating!</p><p class='center-content'>Phillip, you can press spacebar to see the data that gets stored.</p>"
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -66,7 +75,7 @@ instructions:
         timing_post_trial: 1000
         data: {phase: 'thanks_screen'}
         pages:
-            - "<p class='center-content'>Thanks for participating! Phillip, you can press spacebar to see the data that gets stored.</p>"
+            - "<p class='center-content'>Thanks for participating!</p><p class='center-content'>Phillip, you can press spacebar to see the data that gets stored.</p>"
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
