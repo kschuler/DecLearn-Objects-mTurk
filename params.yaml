@@ -2,7 +2,7 @@
 incidental_exposure:
     instructions: "Place your fingers of your right hand on the 1 and 2 key.  Press any key with your left hand to begin."
     prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>"   # prompt present on every trial, inside an HTML <p>
-    choice:                 # numeric key code for choices as YAML list
+    choices:                 # numeric key code for choices as YAML list
         - 49
         - 50
     timing_stim: -1                   # How long to show stim for in ms.  If -1, then stim is shown until a response is given
