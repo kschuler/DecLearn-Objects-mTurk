@@ -70,10 +70,14 @@
         var incidental_exposure = {
           type: 'categorize',
           data: {phase : 'incidental_exposure'},
-          response_ends_trial: PARAMS.incidental_exposure.response_ends_trial,
-          choices: PARAMS.incidental_exposure.choices,
           prompt: PARAMS.incidental_exposure.prompt,
+          choices: PARAMS.incidental_exposure.choices,
+          timing_stim: PARAMS.incidental_exposure.timing_stim,
           timing_response: PARAMS.incidental_exposure.timing_response,
+          show_feedback_on_timeout: PARAMS.incidental_exposure.show_feedback_on_timeout,
+          response_ends_trial: PARAMS.incidental_exposure.response_ends_trial,
+          correct_text: PARAMS.incidental_exposure.correct_text,
+          incorrect_text: PARAMS.incidental_exposure.incorrect_text,
           timeline: PARAMS.incidental_exposure.stimuli_set
         }
 
