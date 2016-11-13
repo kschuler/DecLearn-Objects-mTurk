@@ -12,7 +12,7 @@ instructions:
     # the MAIN INSTRUCTIONS at the begining of the experiment
     #
     main:
-        timing_post_trial: 1000
+        timing_post_trial: 0
         data: {phase: 'instructions_main'}
         pages:
             - "<h1 class='center-content'>Welcome</h1><p class='center-content'>Welcome to the experiment. Press next to continue.</p>"
@@ -131,23 +131,22 @@ incidental_exposure:
     timing_feedback_duration: 2000
     timing_response: 1500
     response_ends_trial: true
-    is_html: false
     #
     # Here we set further parameters available to the incidental_exposure timeline
     # (randomize_order is true or false depending on whether you want the timeline (trial presentation) to be randomized)
-    # In the timeline, we set a few parameters that are avialble to the 'categorize' jsych pluginAPI
+    # In the timeline, we set a few parameters that are avialble to the 'categorize' jsych plugin
     # that we want to change on each trial.  (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
     #
     randomize_order: true
     timeline:
-        - {stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {this_stim: 'aardvark'}}
-        - {stimulus: 'static/stimuli/img/blimp.png', key_answer: 49, data: {this_stim: 'blimp'}}
-        - {stimulus: 'static/stimuli/img/Eals01.png', key_answer: 50, data: {this_stim: 'Eals01'}}
-        - {stimulus: 'static/stimuli/img/Eals02.png', key_answer: 50, data: {this_stim: 'Eals02'}}
+        - {stimulus: 'static/stimuli/img/aardvark.png', is_html: false, key_answer: 49, data: {this_stim: 'aardvark'}}
+        - {stimulus: 'static/stimuli/img/blimp.png', is_html: false, key_answer: 49, data: {this_stim: 'blimp'}}
+        - {stimulus: 'static/stimuli/img/Eals01.png', is_html: false, key_answer: 50, data: {this_stim: 'Eals01'}}
+        - {stimulus: 'static/stimuli/img/Eals02.png', is_html: false, key_answer: 50, data: {this_stim: 'Eals02'}}
 #
 # ----------------------------- MATH TASK PARAMETERS --------------------------------------------- #
 #
-# incidental_exposure is a jspsych 'categorize' trial type, which takes a timeline parameter that includes
+# math_task is a jspsych 'categorize' trial type, which takes a timeline parameter that includes
 # the list of stimuli, specified below as 'timeline'. (see http://docs.jspsych.org/plugins/jspsych-categorize/)
 #
 math_task:
@@ -177,9 +176,9 @@ math_task:
     timing_response: 2000
     response_ends_trial: true
     #
-    # Here we set further parameters available to the incidental_exposure timeline
+    # Here we set further parameters available to the math_task timeline
     # (randomize_order is true or false depending on whether you want the timeline (trial presentation) to be randomized)
-    # In the timeline, we set a few parameters that are avialble to the 'categorize' jsych pluginAPI
+    # In the timeline, we set a few parameters that are avialble to the 'categorize' jsych plugin
     # that we want to change on each trial.  (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
     #
     randomize_order: true
@@ -187,7 +186,7 @@ math_task:
         - {stimulus: "<h1 class='center-content'>1 + 1 = 2</h1>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
         - {stimulus: "<h1 class='center-content'>3 + 1 = 2</h1>", is_html: true, key_answer: 50, data: {this_stim: "3 + 1 = 2"}}
         - {stimulus: "<h1 class='center-content'>-1 + 5 = 2</h1>", is_html: true, key_answer: 50, data: {this_stim: "-1 + 5 = 2"}}
-        - {stimulus: "<h1 class='center-content'>4 -2 = 2</h1>", is_html: true, key_answer: 49, data: {this_stim: "4 -2 = 2"}}
+        - {stimulus: "<h1 class='center-content'>4 - 2 = 2</h1>", is_html: true, key_answer: 49, data: {this_stim: "4 -2 = 2"}}
 #
 # ----------------------------- MEMORY TASK PARAMETERS --------------------------------------------- #
 #
@@ -203,10 +202,10 @@ memory_task:
     data: {phase: 'math_task'}
     #
     # Here we set a few parameters available to the 'categorize' jspsych plugin
-    # These parameters apply to ALL trials in incidental_exposure
+    # These parameters apply to ALL trials in memory_task
     # (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
     #
-    prompt: "<p class='center-content'>Press 1 for True and 2 for False</p>"
+    prompt: "<p class='center-content'>Press 1 for old and 2 for new</p>"
     choices:
         - 49
         - 50
@@ -222,9 +221,9 @@ memory_task:
     response_ends_trial: true
     is_html: false
     #
-    # Here we set further parameters available to the incidental_exposure timeline
+    # Here we set further parameters available to the memory_task timeline
     # (randomize_order is true or false depending on whether you want the timeline (trial presentation) to be randomized)
-    # In the timeline, we set a few parameters that are avialble to the 'categorize' jsych pluginAPI
+    # In the timeline, we set a few parameters that are avialble to the 'categorize' jsych plugin
     # that we want to change on each trial.  (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
     #
     randomize_order: true
