@@ -85,12 +85,16 @@
         /* exposure block */
         var distractor_math = {
           type: 'categorize',
-          response_ends_trial: true,
-          choices: [49, 50],
-          prompt: "<p class='center-content'>Press 1 if True and 2 if False.</p>",
-          timing_response: 1500,
-          data: {phase : 'incidental_exposure'},
-          timeline: [PARAMS.math_task.stimuli_set]
+          prompt: PARAMS.math_task.prompt,
+          choices: PARAMS.math_task.choices,
+          timing_stim: PARAMS.math_task.timing_stim,
+          timing_response: PARAMS.math_task.timing_response,
+          show_feedback_on_timeout: PARAMS.math_task.show_feedback_on_timeout,
+          response_ends_trial: PARAMS.math_task.response_ends_trial,
+          correct_text: PARAMS.math_task.correct_text,
+          incorrect_text: PARAMS.math_task.incorrect_text,
+          timeout_message: PARAMS.math_task.timeout_message,
+          timeline: PARAMS.math_task.stimuli_set
         }
 
         /* test block */

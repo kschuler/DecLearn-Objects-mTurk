@@ -20,12 +20,17 @@ incidental_exposure:
         - {stimulus: 'static/stimuli/img/Eals02.png', key_answer: 50, data: {this_stim: 'Eals02'}}
 math_task:
     instructions: "Place your fingers of your right hand on the 1 and 2 key.  Press any key with your left hand to begin."
-    prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>"  # prompt present on every trial, inside an HTML <p>
-    choice_buttons:             # numeric key code for choices as YAML list
+    prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>"   # prompt present on every trial, inside an HTML <p>
+    choices:                 # numeric key code for choices as YAML list
         - 49
         - 50
-    timeout_after: 1500         # timeout trial after
-    response_ends_trial: true   # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
+    timing_stim: -1                   # How long to show stim for in ms.  If -1, then stim is shown until a response is given
+    timing_response: 1500             # the maximum time allowed for a response.  If -1, then the experiment will wait indefinitely for a response
+    show_feedback_on_timeout: true
+    timeout_message: "<p class='center-content'>Please respond faster.</p>"
+    response_ends_trial: true         # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
+    correct_text: "<p class='center-content'>Correct.</p>"
+    incorrect_text: "<p class='center-content'>Wrong.</p>"   # do you want the response to end the trial? (or should it remain for the full "timout_after" time each time
     is_html: true               # are the stimuli html elements? (text, not images or audio)? true or false
     stimuli_set:
         - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
