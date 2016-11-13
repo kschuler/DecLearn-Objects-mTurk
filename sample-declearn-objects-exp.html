@@ -89,7 +89,7 @@
           incorrect_text: PARAMS.incidental_exposure.incorrect_text,
           timeout_message: PARAMS.incidental_exposure.timeout_message,
           timeline: PARAMS.incidental_exposure.timeline,
-          randomize_order: true
+          randomize_order: true,
         }
 
         var math_task = {
@@ -209,6 +209,8 @@
         function startExperiment(){
             jsPsych.init({
                 display_element: $('#jspsych-target'),
+                fullscreen: true,
+                show_progress_bar: true,
                 timeline: [instructions_main,
                     instructions_incidental_exposure,
                     incidental_exposure,

@@ -16,8 +16,11 @@ instructions:
         data: {phase: 'instructions_main'}
         pages:
             - "<h1 class='center-content'>Welcome</h1><p class='center-content'>Welcome to the experiment. Press next to continue.</p>"
-            - "<h1 class='center-content'>Instructions</h1><p class='center-content'>Here are some overall instructions about what you'll do and what to expect.</p>"
-            - "<h1 class='center-content'>Instructions</h1><p class='center-content'>Maybe there are even more instructions here about overall experiment.</p>"
+            - "<h1 class='center-content'>Instructions</h1><p class='center-content'>In this experiment, you will be asked to categorize objects or expressions one at a time.</p>"
+            - >
+                <h1 class='center-content'>Instructions</h1>
+                <p class='center-content'>The experiment is broken up into three parts.  In each part,
+                you will categorize a different type of object or expression.  Each part will take no longer than 2 minutes.</p>
         key_forward: 'rightarrow'
         key_backward: 'leftarrow'
         allow_backward: true
@@ -32,14 +35,14 @@ instructions:
         pages:
             - >
                 <h1 class='center-content'>Part 1 of 3</h1>
-                <h4 class='center-content'>Please read these instructions carefully.</h4>
+                <h4 class='center-content'>Please read these instructions carefully</h4>
                 <p class='center-content'>You will see different pictures, one at a time.
                 Some of the pictures are of real objects, and some are of made-up objects.
                 Your job is to decide if the thing in the picture is a real object or not.</p>
                 <p class='center-content'>If it is real, press 1. If it is not, press 2.</p>
                 <p class='center-content'>We're measuring how long it takes you to answer, so answer as soon as possible.
                 If you aren't sure, just press the button for the first answer you think of.</p>
-                <h4 class='center-content'>Press spacebar when you are ready to start.</h4>
+                <h4 class='center-content'>Press spacebar when you are ready to start</h4>
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -54,14 +57,14 @@ instructions:
         pages:
             - >
                 <h1 class='center-content'>Part 2 of 3</h1>
-                <h4 class='center-content'>Please read these instructions carefully.</h4>
+                <h4 class='center-content'>Please read these instructions carefully</h4>
                 <p class='center-content'>Now you will see some math problems, one at a time.
                 Some of the math problems are true and some are not.
                 Your job is to decide if the math problem is true or false.</p>
                 <p class='center-content'>If it is true, press 1. If it is false, press 2.</p>
                 <p class='center-content'>We're measuring how long it takes you to answer, so answer as soon as possible.
                 If you aren't sure, just press the button for the first answer you think of.</p>
-                <h4 class='center-content'>Press spacebar when you are ready to start.</h4>
+                <h4 class='center-content'>Press spacebar when you are ready to start</h4>
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -76,14 +79,14 @@ instructions:
         pages:
             - >
                 <h1 class='center-content'>Part 3 of 3</h1>
-                <h4 class='center-content'>Please read these instructions carefully.</h4>
+                <h4 class='center-content'>Please read these instructions carefully</h4>
                 <p class='center-content'>Now you will see more pictures, one at a time.
                 Some of the pictures are ones you just saw and some are new.
                 Your job is to decide if the picture is old or new.</p>
                 <p class='center-content'>If it is old, press 1. If it is new, press 2.</p>
                 <p class='center-content'>We're measuring how long it takes you to answer, so answer as soon as possible.
                 If you aren't sure, just press the button for the first answer you think of.</p>
-                <h4 class='center-content'>Press spacebar when you are ready to start.</h4>
+                <h4 class='center-content'>Press spacebar when you are ready to start</h4>
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -250,7 +253,6 @@ demographic_questions:
         - true
         - true
     horizontal: false
-
 debrief_questions:
     preamble: "<p class='center-content'>For each question, type in your response.</p>"
     questions:
