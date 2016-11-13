@@ -239,12 +239,26 @@ memory_task:
 # the list of questions you want to ask, specified below as 'timeline'. (see http://docs.jspsych.org/plugins/jspsych-categorize/)
 #
 demographic_questions:
+    preamble: "<p class='center-content'>For each question, select the answer that best describes you</p>"
     questions:
-        - "How old are  you?"
-        - "Gender?"
+        - "Select the age group that describes you"
+        - "Select your gender"
     options:
-        - ["18-45", "45-100"]
-        - ["Female", "Male"]
+        - ["18-45", "45-100", "prefer not to respond"]
+        - ["Female", "Male", "prefer not to respond"]
     required:
         - true
         - true
+    horizontal: false
+
+debrief_questions:
+    preamble: "<p class='center-content'>For each question, type in your response.</p>"
+    questions:
+        - "Did you notice anything about this task?"
+        - "Do you have any feedback you want to provide?"
+    rows:
+        - 5
+        - 3
+    columns:
+        - 50
+        - 40
