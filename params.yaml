@@ -15,9 +15,9 @@ instructions:
         timing_post_trial: 1000
         data: {phase: 'instructions_main'}
         pages:
-            - "<p class='center-content'>Welcome to the experiment. Press next to continue.</p>"
-            - "<p class='center-content'>Here is the first page of instructions abut what you'll done.</p>"
-            - "<p class='center-content'>Here is the second page.</p>"
+            - "<h1 class='center-content'>Welcome</h1><p class='center-content'>Welcome to the experiment. Press next to continue.</p>"
+            - "<h1 class='center-content'>Instructions</h1><p class='center-content'>Here are some overall instructions about what you'll do and what to expect.</p>"
+            - "<h1 class='center-content'>Instructions</h1><p class='center-content'>Maybe there are even more instructions here about overall experiment.</p>"
         key_forward: 'rightarrow'
         key_backward: 'leftarrow'
         allow_backward: true
@@ -31,15 +31,15 @@ instructions:
         data: {phase: 'instructions_incidental_exposure'}
         pages:
             - >
-                <h3 class='center-content'>Instructions: Part 1 of 4</h3>
+                <h1 class='center-content'>Part 1 of 3</h1>
+                <h4 class='center-content'>Please read these instructions carefully.</h4>
                 <p class='center-content'>You will see different pictures, one at a time.
                 Some of the pictures are of real objects, and some are of made-up objects.
                 Your job is to decide if the thing in the picture is a real object or not.</p>
-                <h4 class='center-content'>If it is real, press 1. If it is not, press 2.</h4>
+                <p class='center-content'>If it is real, press 1. If it is not, press 2.</p>
                 <p class='center-content'>We're measuring how long it takes you to answer, so answer as soon as possible.
-                If you aren't sure, just press the button for the first answer you think of.</p>"
+                If you aren't sure, just press the button for the first answer you think of.</p>
                 <h4 class='center-content'>Press spacebar when you are ready to start.</h4>
-
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -52,7 +52,16 @@ instructions:
         timing_post_trial: 1000
         data: {phase: 'instructions_math_task'}
         pages:
-            - "<p class='center-content'>Thanks for participating!</p><p class='center-content'>Phillip, you can press spacebar to see the data that gets stored.</p>"
+            - >
+                <h1 class='center-content'>Part 2 of 3</h1>
+                <h4 class='center-content'>Please read these instructions carefully.</h4>
+                <p class='center-content'>Now you will see some math problems, one at a time.
+                Some of the math problems are true and some are not.
+                Your job is to decide if the math problem is true or false.</p>
+                <p class='center-content'>If it is true, press 1. If it is false, press 2.</p>
+                <p class='center-content'>We're measuring how long it takes you to answer, so answer as soon as possible.
+                If you aren't sure, just press the button for the first answer you think of.</p>
+                <h4 class='center-content'>Press spacebar when you are ready to start.</h4>
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -65,7 +74,16 @@ instructions:
         timing_post_trial: 1000
         data: {phase: 'instructions_memory_task'}
         pages:
-            - "<p class='center-content'>Thanks for participating!</p><p class='center-content'>Phillip, you can press spacebar to see the data that gets stored.</p>"
+            - >
+                <h1 class='center-content'>Part 3 of 3</h1>
+                <h4 class='center-content'>Please read these instructions carefully.</h4>
+                <p class='center-content'>Now you will see more pictures, one at a time.
+                Some of the pictures are ones you just saw and some are new.
+                Your job is to decide if the picture is old or new.</p>
+                <p class='center-content'>If it is old, press 1. If it is new, press 2.</p>
+                <p class='center-content'>We're measuring how long it takes you to answer, so answer as soon as possible.
+                If you aren't sure, just press the button for the first answer you think of.</p>
+                <h4 class='center-content'>Press spacebar when you are ready to start.</h4>
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -75,7 +93,7 @@ instructions:
         timing_post_trial: 1000
         data: {phase: 'thanks_screen'}
         pages:
-            - "<p class='center-content'>Thanks for participating!</p><p class='center-content'>Phillip, you can press spacebar to see the data that gets stored.</p>"
+            - "<h2 class='center-content'>Thanks for participating!</h2><p class='center-content'>Phillip, you can press spacebar to see the data that gets stored.</p>"
         key_forward: 'spacebar'
         key_backward: 'leftarrow'
         allow_backward: false
@@ -188,16 +206,16 @@ memory_task:
     # These parameters apply to ALL trials in incidental_exposure
     # (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
     #
-    prompt: "<p class='center-content'>Press 1 for True and 2 for False.</p>"
+    prompt: "<p class='center-content'>Press 1 for True and 2 for False</p>"
     choices:
         - 49
         - 50
-    correct_text: "<p class='center-content'>Correct.</p>"
-    incorrect_text: "<p class='center-content'>Wrong.</p>"
+    correct_text: "<p class='center-content'>Correct</p>"
+    incorrect_text: "<p class='center-content'>Wrong</p>"
     force_correct_button_press: false
     show_stim_with_feedback: true
     show_feedback_on_timeout: false
-    timeout_message: "<p class='center-content'>Please respond faster.</p>"
+    timeout_message: "<p class='center-content'>Please respond faster</p>"
     timing_stim: -1
     timing_feedback_duration: 2000
     timing_response: 1500
@@ -213,8 +231,8 @@ memory_task:
     timeline:
         - {stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {this_stim: 'aardvark'}}
         - {stimulus: 'static/stimuli/img/blimp.png', key_answer: 49, data: {this_stim: 'blimp'}}
-        - {stimulus: 'static/stimuli/img/Eals01.png', key_answer: 50, data: {this_stim: 'Eals01'}}
-        - {stimulus: 'static/stimuli/img/Eals02.png', key_answer: 50, data: {this_stim: 'Eals02'}}
+        - {stimulus: 'static/stimuli/img/alligator.png', key_answer: 50, data: {this_stim: 'Eals01'}}
+        - {stimulus: 'static/stimuli/img/bat.png', key_answer: 50, data: {this_stim: 'Eals02'}}
 #
 # ----------------------------- DEMOGRAPHIC QUESTIONS PARAMETERS --------------------------------------------- #
 #
