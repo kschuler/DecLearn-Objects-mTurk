@@ -186,10 +186,17 @@
         }
 
 
-        var thanks_for_participating = {
-            type: 'text',
-            text: 'Thanks for your participation.  Philip: Press any key to see the data that gets stored.'
-                }
+        var thanks_screen = {
+            type: 'instructions',
+            timing_post_trial: PARAMS.instructions.thanks_screen.timing_post_trial,
+            data: PARAMS.instructions.thanks_screen.data,
+            pages: PARAMS.instructions.thanks_screen.pages,
+            key_forward: PARAMS.instructions.thanks_screen.key_forward,
+            key_backward: PARAMS.instructions.thanks_screen.key_backward,
+            allow_backward: PARAMS.instructions.thanks_screen.allow_backward,
+            allow_keys: PARAMS.instructions.thanks_screen.allow_keys,
+            show_clickable_nav: PARAMS.instructions.thanks_screen.show_clickable_nav
+        }
 
 
         //
@@ -260,7 +267,7 @@
                     instructions_memory_task,
                     memory_task,
                     demographic_questions,
-                    thanks_for_participating],
+                    thanks_screen],
                 on_finish: function(){jsPsych.data.displayData();}
                 // on_finish: function() {
                 //     psiturk.saveData({

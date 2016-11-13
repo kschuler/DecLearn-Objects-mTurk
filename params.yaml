@@ -62,6 +62,16 @@ instructions:
         allow_backward: false
         allow_keys: true
         show_clickable_nav: false
+    thanks_screen:
+        timing_post_trial: 1000
+        data: {phase: 'thanks_screen'}
+        pages:
+            - "<p class='center-content'>Thanks for participating! Phillip, you can press spacebar to see the data that gets stored.</p>"
+        key_forward: 'spacebar'
+        key_backward: 'leftarrow'
+        allow_backward: false
+        allow_keys: true
+        show_clickable_nav: false
 #
 # ----------------------------- INCIDENTAL EXPOSURE PARAMETERS --------------------------------------------- #
 #
@@ -80,16 +90,16 @@ incidental_exposure:
     # These parameters apply to ALL trials in incidental_exposure
     # (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
     #
-    prompt: "<p class='center-content'>Press 1 for real and 2 for made-up.</p>"
+    prompt: "<p class='center-content'>Press 1 for real and 2 for made-up</p>"
     choices:
         - 49
         - 50
-    correct_text: "<p class='center-content'>Correct.</p>"
-    incorrect_text: "<p class='center-content'>Wrong.</p>"
+    correct_text: "<p class='center-content'>Correct</p>"
+    incorrect_text: "<p class='center-content'>Wrong</p>"
     force_correct_button_press: false
     show_stim_with_feedback: true
     show_feedback_on_timeout: false
-    timeout_message: "<p class='center-content'>Please respond faster.</p>"
+    timeout_message: "<p class='center-content'>Please respond faster</p>"
     timing_stim: -1
     timing_feedback_duration: 2000
     timing_response: 1500
@@ -125,21 +135,20 @@ math_task:
     # These parameters apply to ALL trials in incidental_exposure
     # (see http://docs.jspsych.org/plugins/jspsych-categorize/#parameters)
     #
-    prompt: "<p class='center-content'>Press 1 for True and 2 for False.</p>"
+    prompt: "<p class='center-content'>Press 1 for True and 2 for False</p>"
     choices:
         - 49
         - 50
-    correct_text: "<p class='center-content'>Correct.</p>"
-    incorrect_text: "<p class='center-content'>Wrong.</p>"
+    correct_text: "<p class='center-content'>Correct</p>"
+    incorrect_text: "<p class='center-content'>Wrong</p>"
     force_correct_button_press: false
     show_stim_with_feedback: true
     show_feedback_on_timeout: false
-    timeout_message: "<p class='center-content'>Please respond faster.</p>"
+    timeout_message: "<p class='center-content'>Please respond faster</p>"
     timing_stim: -1
     timing_feedback_duration: 2000
-    timing_response: 1500
+    timing_response: 2000
     response_ends_trial: true
-    is_html: false
     #
     # Here we set further parameters available to the incidental_exposure timeline
     # (randomize_order is true or false depending on whether you want the timeline (trial presentation) to be randomized)
@@ -148,10 +157,10 @@ math_task:
     #
     randomize_order: true
     timeline:
-        - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
-        - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
-        - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
-        - {stimulus: "<p class='center-content'>1 + 1 = 2.</p>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
+        - {stimulus: "<h1 class='center-content'>1 + 1 = 2</h1>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
+        - {stimulus: "<h1 class='center-content'>3 + 1 = 2</h1>", is_html: true, key_answer: 50, data: {this_stim: "3 + 1 = 2"}}
+        - {stimulus: "<h1 class='center-content'>-1 + 5 = 2</h1>", is_html: true, key_answer: 50, data: {this_stim: "-1 + 5 = 2"}}
+        - {stimulus: "<h1 class='center-content'>4 -2 = 2</h1>", is_html: true, key_answer: 49, data: {this_stim: "4 -2 = 2"}}
 #
 # ----------------------------- MEMORY TASK PARAMETERS --------------------------------------------- #
 #
