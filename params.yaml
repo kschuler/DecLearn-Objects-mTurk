@@ -1,5 +1,15 @@
 ---
 #
+experiment_wide:
+    fullscreen: false
+    show_progress_bar: true
+    images_to_preload:
+         - 'static/stimuli/img/aardvark.png'
+         - 'static/stimuli/img/bat.png'
+         - 'static/stimuli/img/alligator.png'
+         - 'static/stimuli/img/blimp.png'
+         - 'static/stimuli/img/Eals01.png'
+         - 'static/stimuli/img/Eals02.png'
 # ----------------------------- INSTRUCTIONS PARAMETERS --------------------------------------------- #
 #
 # all instructions are jspsych 'instructions' trial types, which takes a few paramters available to all
@@ -115,6 +125,12 @@ incidental_exposure:
     #
     timing_post_trial: 1000
     data: {phase: 'incidental_exposure'}
+
+    # show_prompt_during_ISI: true
+    # show_stimulus_during_ISI: true
+    # isi_stimulus_is_html: true
+    # isi_stimulus: 'static/stimuli/img/aardvark.png'
+    # isi_prompt:
     #
     # Here we set a few parameters available to the 'categorize' jspsych plugin
     # These parameters apply to ALL trials in incidental_exposure
@@ -122,8 +138,8 @@ incidental_exposure:
     #
     prompt: "<p class='center-content'>Press 1 for real and 2 for made-up</p>"
     choices:
-        - 49
-        - 50
+        - '1'
+        - '2'
     correct_text: "<p class='center-content'>Correct</p>"
     incorrect_text: "<p class='center-content'>Wrong</p>"
     force_correct_button_press: false
@@ -142,10 +158,10 @@ incidental_exposure:
     #
     randomize_order: true
     timeline:
-        - {stimulus: 'static/stimuli/img/aardvark.png', is_html: false, key_answer: 49, data: {this_stim: 'aardvark'}}
-        - {stimulus: 'static/stimuli/img/blimp.png', is_html: false, key_answer: 49, data: {this_stim: 'blimp'}}
-        - {stimulus: 'static/stimuli/img/Eals01.png', is_html: false, key_answer: 50, data: {this_stim: 'Eals01'}}
-        - {stimulus: 'static/stimuli/img/Eals02.png', is_html: false, key_answer: 50, data: {this_stim: 'Eals02'}}
+        - {stimulus: 'static/stimuli/img/aardvark.png', is_html: false, key_answer: '1', data: {this_stim: 'aardvark'}}
+        - {stimulus: 'static/stimuli/img/blimp.png', is_html: false, key_answer: '1', data: {this_stim: 'blimp'}}
+        - {stimulus: 'static/stimuli/img/Eals01.png', is_html: false, key_answer: '2', data: {this_stim: 'Eals01'}}
+        - {stimulus: 'static/stimuli/img/Eals02.png', is_html: false, key_answer: '2', data: {this_stim: 'Eals02'}}
 #
 # ----------------------------- MATH TASK PARAMETERS --------------------------------------------- #
 #
@@ -189,7 +205,7 @@ math_task:
         - {stimulus: "<h1 class='center-content'>1 + 1 = 2</h1>", is_html: true, key_answer: 49, data: {this_stim: "1 + 1 = 2"}}
         - {stimulus: "<h1 class='center-content'>3 + 1 = 2</h1>", is_html: true, key_answer: 50, data: {this_stim: "3 + 1 = 2"}}
         - {stimulus: "<h1 class='center-content'>-1 + 5 = 2</h1>", is_html: true, key_answer: 50, data: {this_stim: "-1 + 5 = 2"}}
-        - {stimulus: "<h1 class='center-content'>4 - 2 = 2</h1>", is_html: true, key_answer: 49, data: {this_stim: "4 -2 = 2"}}
+        - {stimulus: "<h1 class='center-content'>4 - 2 = 2</h1>", is_html: true, key_answer: 49, data: {this_stim: "4 - 2 = 2"}}
 #
 # ----------------------------- MEMORY TASK PARAMETERS --------------------------------------------- #
 #
@@ -231,10 +247,10 @@ memory_task:
     #
     randomize_order: true
     timeline:
-        - {stimulus: 'static/stimuli/img/aardvark.png', key_answer: 49, data: {this_stim: 'aardvark'}}
-        - {stimulus: 'static/stimuli/img/blimp.png', key_answer: 49, data: {this_stim: 'blimp'}}
-        - {stimulus: 'static/stimuli/img/alligator.png', key_answer: 50, data: {this_stim: 'Eals01'}}
-        - {stimulus: 'static/stimuli/img/bat.png', key_answer: 50, data: {this_stim: 'Eals02'}}
+        - {stimulus: 'static/stimuli/img/aardvark.png', is_html: false, key_answer: 49, data: {this_stim: 'aardvark'}}
+        - {stimulus: 'static/stimuli/img/blimp.png', is_html: false, key_answer: 49, data: {this_stim: 'blimp'}}
+        - {stimulus: 'static/stimuli/img/alligator.png', is_html: false, key_answer: 50, data: {this_stim: 'Eals01'}}
+        - {stimulus: 'static/stimuli/img/bat.png', is_html: false, key_answer: 50, data: {this_stim: 'Eals02'}}
 #
 # ----------------------------- DEMOGRAPHIC QUESTIONS PARAMETERS --------------------------------------------- #
 #

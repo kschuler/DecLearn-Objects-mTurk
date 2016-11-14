@@ -68,13 +68,16 @@
           });
 
 
-         var IMAGES = ['static/stimuli/img/aardvark.png',
-            'static/stimuli/img/blimp.png',
-            'static/stimuli/img/Eals01.png',
-            'static/stimuli/img/Eals01.png'
-        ];
-        jsPsych.pluginAPI.preloadImages(IMAGES, function(){ startExperiment(); });
 
+        jsPsych.pluginAPI.preloadImages(PARAMS.experiment_wide.images_to_preload, function(){ startExperiment(); }, function(nLoaded) { updateLoadedCount(nLoaded); });
+
+        function updateLoadedCount(nLoaded){
+            var percentcomplete = nLoaded / PARAMS.experiment_wide.images_to_preload.length * 100;
+
+            // could put something fancier here, like a progress bar
+            // or updating text in the DOM.
+            console.log('Loaded '+percentcomplete+'% of images');
+        }
         /* exposure block */
         var incidental_exposure = {
           type: 'categorize',
@@ -89,8 +92,39 @@
           incorrect_text: PARAMS.incidental_exposure.incorrect_text,
           timeout_message: PARAMS.incidental_exposure.timeout_message,
           timeline: PARAMS.incidental_exposure.timeline,
-          randomize_order: true,
-        }
+          randomize_order: true
+    //       on_finish: function(){
+    //           var display_element = jsPsych.getDisplayElement()
+    //           console.log(display_element)
+    //           if(PARAMS.incidental_exposure.show_stimulus_during_ISI == true){
+    //               // display stimulus
+    //               if (!PARAMS.incidental_exposure.isi_stimulus_is_html) {
+    //                 display_element.append($('<img>', {
+    //                   src: PARAMS.incidental_exposure.isi_stimulus,
+    //                   id: 'jspsych-single-stim-stimulus'
+    //                 }));
+    //               } else {
+    //                 display_element.append($('<div>', {
+    //                   html: PARAMS.incidental_exposure.isi_stimulus,
+    //                   id: 'jspsych-single-stim-stimulus'
+    //                 }));
+    //               }
+    //               //show prompt if there is one
+    //               if (PARAMS.incidental_exposure.show_prompt_during_ISI !== "") {
+    //                 display_element.append(PARAMS.incidental_exposure.isi_prompt);
+    //               };
+    //
+    //               // end trial if time limit is set
+    //               if (PARAMS.incidental_exposure.timing_post_trial  > 0) {
+    //                 var t2 = setTimeout(function() {
+    //                     // clear the display
+    //                     display_element.html('');;
+    //               })
+    //               }
+    //
+    //     }
+    // }
+}
 
         var math_task = {
           type: 'categorize',
@@ -209,8 +243,8 @@
         function startExperiment(){
             jsPsych.init({
                 display_element: $('#jspsych-target'),
-                fullscreen: true,
-                show_progress_bar: true,
+                fullscreen: PARAMS.experiment_wide.fullscreen,
+                show_progress_bar: PARAMS.experiment_wide.show_progress_bar,
                 timeline: [instructions_main,
                     instructions_incidental_exposure,
                     incidental_exposure,
