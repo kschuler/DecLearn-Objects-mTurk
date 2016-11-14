@@ -5,7 +5,7 @@ a mechanical turk version of a classic declarative memory task for Michael Ullma
 ## How to
 Detailed instructions for how to modify the parameters of this experiment and run it on Amazon Mechanical Turk are provided on this experiment's wiki page:
 
-- [DecLean Objects mTurk wiki][3] 
+- [DecLearn Objects mTurk wiki][3] 
 
 ## Citations
 This new version of the experiment relies heavily on [jspsych](http://docs.jspsych.org/), a JavaScript library for behavioral experiments and [psiTurk](https://psiturk.org/), a toolbox for running dynamic web-experiments on Mechanical Turk.  If you use this program (or a modified version of it), please make sure to [cite](https://github.com/kschuler/DecLearn-Objects-mTurk#citations) the nice people who makes these tools in your published works.
