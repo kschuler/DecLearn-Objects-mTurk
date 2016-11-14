@@ -6,7 +6,7 @@ a mechanical turk version of a classic declarative memory task for Michael Ullma
 Visit the [DecLean Objects mTurk wiki][3] for detailed instructions on how to modify and run this experiment on Amazon Mechanical Turk. 
 
 ## Citations
-If you use this experiment, please make sure you cite the nice people who make the packages it relies on: [jsPsych][6] and [psiTurk][7].
+This new version of the experiment relies heavily on [jspsych](http://docs.jspsych.org/), a JavaScript library for behavioral experiments and [psiTurk](https://psiturk.org/), a toolbox for running dynamic web-experiments on Mechanical Turk.  If you use this program (or a modified version of it), please make sure to [cite](https://github.com/kschuler/DecLearn-Objects-mTurk#citations) the nice people who makes these tools in your published works.
 
 #### jsPsych citation
 de Leeuw, J.R. (2015). jsPsych: A JavaScript library for creating behavioral experiments in a Web browser. *Behavior Research Methods*, 47(1), 1-12. doi:10.3758/s13428-014-0458-y
