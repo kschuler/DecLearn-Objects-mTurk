@@ -12,7 +12,7 @@ If you use this experiment, please make sure you cite the nice people who make t
 de Leeuw, J.R. (2015). jsPsych: A JavaScript library for creating behavioral experiments in a Web browser. *Behavior Research Methods*, 47(1), 1-12. doi:10.3758/s13428-014-0458-y
 
 #### psiTurk citation
-McDonnell, J.V., Martin, J.B., Markant, D.B., Coenen, A., Rich, A.S., and Gureckis, T.M. (2012). psiTurk (Version 1.02) [Software](). New York, NY: New York University
+McDonnell, J.V., Martin, J.B., Markant, D.B., Coenen, A., Rich, A.S., and Gureckis, T.M. (2012). psiTurk (Version 1.02) Software. New York, NY: New York University
 
 [1]:	http://docs.jspsych.org/
 [2]:	https://psiturk.org/
