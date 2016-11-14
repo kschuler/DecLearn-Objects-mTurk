@@ -3,7 +3,7 @@ a mechanical turk version of a classic declarative memory task for Michael Ullma
 
 
 ## How to
-Visit the [DecLean Objects mTurk wiki][3] for detailed instructions on how to modify and use the turkAGL templates to run experiments on Amazon Mechanical Turk. 
+Visit the [DecLean Objects mTurk wiki][3] for detailed instructions on how to modify and run this experiment on Amazon Mechanical Turk. 
 
 ## Citations
 If you use these templates, please make sure you cite the nice people who make the packages they rely on: [jsPsych][6] and [psiTurk][7].
